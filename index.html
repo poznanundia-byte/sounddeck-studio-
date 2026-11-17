@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>SoundDeck Studio</title>
+    <meta name="theme-color" content="#101226" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="SoundDeck" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="./app-logo.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./pwa-192x192.png" />
+    <link rel="icon" href="./favicon.ico" />
+    <meta name="description" content="All-in-one dark-mode music workspace for artists, content creators, and DJs featuring AI lyrics &amp; voice alignment, beat pads, multi-track DAW with Audacity bridge, Virtual DJ console, Social Hub, Discover &amp; BuymeSoda creator support." />
+    <meta property="og:title" content="SoundDeck Studio" />
+    <meta property="og:description" content="All-in-one dark-mode music workspace for artists, content creators, and DJs featuring AI lyrics &amp; voice alignment, beat pads, multi-track DAW with Audacity bridge, Virtual DJ console, Social Hub, Discover &amp; BuymeSoda creator support." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./app-logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="./app-logo.png" />
+    <script>
+      window.__pwaDeferredPrompt = null;
+      window.addEventListener('beforeinstallprompt', function (e) {
+        e.preventDefault();
+        window.__pwaDeferredPrompt = e;
+      });
+    </script>
+  </head>
+  <body class="bg-[#0B0D10] text-slate-100 antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

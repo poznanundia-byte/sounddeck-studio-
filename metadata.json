@@ -1,0 +1,10 @@
+{
+  "name": "Remix SoundDeck Studio",
+  "description": "All-in-one dark-mode music workspace for artists, content creators, and DJs featuring AI lyrics \u0026 voice alignment, beat pads, multi-track DAW with Audacity bridge, Virtual DJ console, Social Hub, Discover \u0026 BuymeSoda creator support.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

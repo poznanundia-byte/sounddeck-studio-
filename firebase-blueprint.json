@@ -1,0 +1,759 @@
+{
+  "entities": {
+    "CreatorProfile": {
+      "title": "CreatorProfile",
+      "description": "Public creator profile for an artist, content creator, or DJ with BuymeSoda handle.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "role": {
+          "type": "string",
+          "enum": ["artist", "creator", "dj"]
+        },
+        "buyMeSodaHandle": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "bio": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["uid", "displayName", "role", "createdAt", "updatedAt"]
+    },
+    "CreatorPrivateInfo": {
+      "title": "CreatorPrivateInfo",
+      "description": "Isolated private PII and connected social handles for a user.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "phoneCountryCode": {
+          "type": "string",
+          "maxLength": 10
+        },
+        "emailVerified": {
+          "type": "boolean"
+        },
+        "phoneVerified": {
+          "type": "boolean"
+        },
+        "mfaEnrolled": {
+          "type": "boolean"
+        },
+        "instagramHandle": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "facebookPage": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "tiktokHandle": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "whatsappNumber": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "youtubeChannel": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["uid", "updatedAt"]
+    },
+    "SocialSyncConfig": {
+      "title": "SocialSyncConfig",
+      "description": "Auto-publishing and cross-platform social sync preferences for tracks and reels across Instagram, TikTok, SoundCloud, Facebook, WhatsApp, and YouTube.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "autoPublishTracks": {
+          "type": "boolean"
+        },
+        "autoPublishReels": {
+          "type": "boolean"
+        },
+        "includeSodaCard": {
+          "type": "boolean"
+        },
+        "instagramEnabled": {
+          "type": "boolean"
+        },
+        "tiktokEnabled": {
+          "type": "boolean"
+        },
+        "soundcloudEnabled": {
+          "type": "boolean"
+        },
+        "facebookEnabled": {
+          "type": "boolean"
+        },
+        "whatsappEnabled": {
+          "type": "boolean"
+        },
+        "youtubeEnabled": {
+          "type": "boolean"
+        },
+        "soundcloudHandle": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "youtubeChannel": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "uid",
+        "autoPublishTracks",
+        "autoPublishReels",
+        "includeSodaCard",
+        "instagramEnabled",
+        "tiktokEnabled",
+        "soundcloudEnabled",
+        "facebookEnabled",
+        "whatsappEnabled",
+        "updatedAt"
+      ]
+    },
+    "MusicProject": {
+      "title": "MusicProject",
+      "description": "Saved lyrics, beat settings, multitrack DAW state, MIDI notes, effects, and voice alignment notes created in Music Creation or DAW.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "category": {
+          "type": "string",
+          "enum": ["beat", "recording", "song"]
+        },
+        "genre": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "bpm": {
+          "type": "number"
+        },
+        "musicalKey": {
+          "type": "string",
+          "maxLength": 32
+        },
+        "timeSignature": {
+          "type": "string",
+          "maxLength": 16
+        },
+        "lyrics": {
+          "type": "string",
+          "maxLength": 8000
+        },
+        "alignmentNotes": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "kitName": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "studioStateJson": {
+          "type": "string",
+          "maxLength": 120000
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["ownerId", "title", "genre", "bpm", "createdAt", "updatedAt"]
+    },
+    "SocialCampaign": {
+      "title": "SocialCampaign",
+      "description": "Saved social media content creation draft targeted to Instagram, Facebook, TikTok, or WhatsApp.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "platform": {
+          "type": "string",
+          "enum": ["instagram", "facebook", "tiktok", "whatsapp", "youtube"]
+        },
+        "headline": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 140
+        },
+        "caption": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2200
+        },
+        "trackTitle": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["ownerId", "platform", "headline", "caption", "createdAt"]
+    },
+    "SodaSupport": {
+      "title": "SodaSupport",
+      "description": "BuymeSoda support pledge from a fan or creator to an artist, content creator, or webapp owner.",
+      "type": "object",
+      "properties": {
+        "supporterId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "supporterName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "recipientHandle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "recipientRole": {
+          "type": "string",
+          "enum": ["artist", "creator", "dj", "owner"]
+        },
+        "sodaCount": {
+          "type": "integer"
+        },
+        "amountUsd": {
+          "type": "number"
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 280
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["supporterId", "supporterName", "recipientHandle", "recipientRole", "sodaCount", "amountUsd", "createdAt"]
+    },
+    "PadSampleAssignment": {
+      "title": "PadSampleAssignment",
+      "description": "Custom Discover audio sample assignment mapped to a specific Music Creation beat pad.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "padId": {
+          "type": "string",
+          "enum": [
+            "kick808",
+            "snare",
+            "clap",
+            "hihatClosed",
+            "hihatOpen",
+            "logDrum",
+            "rimshot",
+            "shaker",
+            "subBass",
+            "rhodesC",
+            "rhodesF",
+            "rhodesG",
+            "pluck",
+            "brass",
+            "airhorn",
+            "scratch"
+          ]
+        },
+        "sampleName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "sourceType": {
+          "type": "string",
+          "enum": ["catalog", "custom_audio"]
+        },
+        "sourceTrackId": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "grooveStyle": {
+          "type": "string",
+          "enum": ["afro", "house", "trap"]
+        },
+        "bpm": {
+          "type": "number"
+        },
+        "sliceStartSec": {
+          "type": "number"
+        },
+        "sliceDurationSec": {
+          "type": "number"
+        },
+        "audioBase64": {
+          "type": "string",
+          "maxLength": 300000
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "ownerId",
+        "padId",
+        "sampleName",
+        "sourceType",
+        "sourceTrackId",
+        "grooveStyle",
+        "bpm",
+        "sliceStartSec",
+        "sliceDurationSec",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "CommunityActivity": {
+      "title": "CommunityActivity",
+      "description": "Live community feed item capturing shared tracks, user interactions, and project milestones.",
+      "type": "object",
+      "properties": {
+        "authorId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "authorName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "authorRole": {
+          "type": "string",
+          "enum": ["artist", "creator", "dj", "listener"]
+        },
+        "activityType": {
+          "type": "string",
+          "enum": ["interaction", "shared_track", "milestone"]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 140
+        },
+        "detail": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 600
+        },
+        "trackTitle": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "bpm": {
+          "type": "number"
+        },
+        "grooveStyle": {
+          "type": "string",
+          "enum": ["afro", "house", "trap"]
+        },
+        "milestoneTag": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "platform": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "likesCount": {
+          "type": "integer"
+        },
+        "commentsCount": {
+          "type": "integer"
+        },
+        "isPublic": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "authorId",
+        "authorName",
+        "authorRole",
+        "activityType",
+        "title",
+        "detail",
+        "likesCount",
+        "commentsCount",
+        "isPublic",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "CommunityActivityComment": {
+      "title": "CommunityActivityComment",
+      "description": "Community reply or engagement comment on a live activity feed entry.",
+      "type": "object",
+      "properties": {
+        "activityId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "authorId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "authorName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400
+        },
+        "isPublic": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "activityId",
+        "authorId",
+        "authorName",
+        "text",
+        "isPublic",
+        "createdAt"
+      ]
+    },
+    "VocalPreset": {
+      "title": "VocalPreset",
+      "description": "User-saved custom Vocal Intelligence EQ, compression, de-essing, and pitch preset.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "presetJson": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 8000
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["ownerId", "name", "presetJson", "createdAt"]
+    },
+    "StudioCollaboration": {
+      "title": "StudioCollaboration",
+      "description": "Shared collaborative music workspace room tracking collaborators, roles, track comments, and project versions.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "projectTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "bpm": {
+          "type": "number"
+        },
+        "musicalKey": {
+          "type": "string",
+          "maxLength": 32
+        },
+        "collaboratorEmails": {
+          "type": "array",
+          "items": { "type": "string", "maxLength": 160 }
+        },
+        "stateJson": {
+          "type": "string",
+          "maxLength": 60000
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["ownerId", "projectTitle", "bpm", "collaboratorEmails", "stateJson", "createdAt", "updatedAt"]
+    },
+    "StudioExportLog": {
+      "title": "StudioExportLog",
+      "description": "Immutable export & ownership audit record for rendered WAV, MP3, stems, and project backups.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "projectTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "fileName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "format": {
+          "type": "string",
+          "enum": ["wav", "mp3", "stems", "backup_json"]
+        },
+        "sampleRate": {
+          "type": "integer"
+        },
+        "bitDepth": {
+          "type": "integer"
+        },
+        "sizeBytes": {
+          "type": "integer"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["ownerId", "projectTitle", "fileName", "format", "sampleRate", "sizeBytes", "createdAt"]
+    },
+    "SocialOmnichannelEvent": {
+      "title": "SocialOmnichannelEvent",
+      "description": "Two-way synchronized social post, reel, direct message, comment, or call event across Instagram, TikTok, WhatsApp, Facebook, and YouTube with admin monitoring.",
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "platform": {
+          "type": "string",
+          "enum": ["instagram", "tiktok", "whatsapp", "facebook", "youtube"]
+        },
+        "eventType": {
+          "type": "string",
+          "enum": ["post", "reel", "message", "call", "comment"]
+        },
+        "direction": {
+          "type": "string",
+          "enum": ["outbound", "inbound"]
+        },
+        "authorName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "authorHandle": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 140
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2200
+        },
+        "mediaUrl": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "status": {
+          "type": "string",
+          "enum": ["synced", "pending", "flagged", "resolved"]
+        },
+        "callState": {
+          "type": "string",
+          "enum": ["ringing", "active", "ended", "missed"]
+        },
+        "replyText": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "isPublic": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "ownerId",
+        "platform",
+        "eventType",
+        "direction",
+        "authorName",
+        "title",
+        "body",
+        "status",
+        "isPublic",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/CreatorProfile" },
+      "description": "Public creator profiles indexed by UID."
+    },
+    "/users/{userId}/private/info": {
+      "schema": { "$ref": "#/entities/CreatorPrivateInfo" },
+      "description": "Isolated PII and private social handles accessible only by the owner."
+    },
+    "/users/{userId}/private/social_sync": {
+      "schema": { "$ref": "#/entities/SocialSyncConfig" },
+      "description": "Isolated Social Sync auto-publishing preferences accessible only by the owner."
+    },
+    "/projects/{projectId}": {
+      "schema": { "$ref": "#/entities/MusicProject" },
+      "description": "User-owned music projects, lyrics, DAW tracks/MIDI state, and beat/alignment sessions."
+    },
+    "/social_campaigns/{campaignId}": {
+      "schema": { "$ref": "#/entities/SocialCampaign" },
+      "description": "User-owned social hub content campaigns for IG, FB, TikTok, and WhatsApp."
+    },
+    "/soda_supports/{supportId}": {
+      "schema": { "$ref": "#/entities/SodaSupport" },
+      "description": "BuymeSoda support pledges for artists, creators, DJs, and the webapp owner."
+    },
+    "/pad_assignments/{assignmentId}": {
+      "schema": { "$ref": "#/entities/PadSampleAssignment" },
+      "description": "Per-user custom Discover sample assignments mapped to beat pads."
+    },
+    "/community_activities/{activityId}": {
+      "schema": { "$ref": "#/entities/CommunityActivity" },
+      "description": "Live community activity feed displaying user interactions, shared tracks, and project milestones."
+    },
+    "/community_activities/{activityId}/comments/{commentId}": {
+      "schema": { "$ref": "#/entities/CommunityActivityComment" },
+      "description": "Community comments and engagement replies on live activity feed posts."
+    },
+    "/vocal_presets/{presetId}": {
+      "schema": { "$ref": "#/entities/VocalPreset" },
+      "description": "Custom saved Vocal Intelligence DSP presets owned by individual users."
+    },
+    "/studio_collaborations/{collabId}": {
+      "schema": { "$ref": "#/entities/StudioCollaboration" },
+      "description": "Collaborative studio workspaces shared across project owners and invited collaborators."
+    },
+    "/export_logs/{exportId}": {
+      "schema": { "$ref": "#/entities/StudioExportLog" },
+      "description": "Owner-scoped export history and rights provenance logs."
+    },
+    "/social_events/{eventId}": {
+      "schema": { "$ref": "#/entities/SocialOmnichannelEvent" },
+      "description": "Two-way omnichannel posts, reels, messages, and calls across IG, TikTok, WhatsApp, Facebook, and YouTube with admin moderation."
+    }
+  }
+}
